@@ -50,12 +50,12 @@ const SignUpScreen = ({ navigation }) => {
   const isFocused       = (field) => focused === field;
   const strength        = getPasswordStrength(password);
 
-  const namePlaceholder = language === 'ur' ? "احمد رضا" : language === 'ru' ? "Иван Иванов" : "Ahmad Raza";
-  const emailPlaceholder = language === 'ur' ? "آپکا@ای میل.کام" : language === 'ru' ? "вы@example.com" : "you@example.com";
-  const phonePlaceholder = language === 'ur' ? "\u200F+٩٢ ٣٠٠ ١٢٣٤٥٦٧" : language === 'ru' ? "+7 999 123 45 67" : "+92 300 1234567";
-  const passPlaceholder = language === 'ur' ? "پاسورڈ درج کریں" : language === 'ru' ? "Введите пароль" : "Enter password";
-  const passHint = language === 'ur' ? "کم از کم ۸ حروف، ۱ بڑا حرف، ۱ نمبر اور ۲ خاص حروف" : language === 'ru' ? "Мин. 8 симв., 1 заглавная, 1 цифра, 2 спец." : "Min 8 chars, 1 uppercase, 1 num, 2 special";
-  const confirmPlaceholder = language === 'ur' ? "پاسورڈ دوبارہ لکھیں" : language === 'ru' ? "Повторите пароль" : "Re-enter password";
+  const namePlaceholder = language === 'ur' ? "احمد رضا" : language === 'ru' ? "Ali Khan" : "Ahmad Raza";
+  const emailPlaceholder = language === 'ur' ? "آپکا@ای میل.کام" : language === 'ru' ? "aapka@example.com" : "you@example.com";
+  const phonePlaceholder = language === 'ur' ? "\u200F+٩٢ ٣٠٠ ١٢٣٤٥٦٧" : language === 'ru' ? "+92 300 1234567" : "+92 300 1234567";
+  const passPlaceholder = language === 'ur' ? "پاسورڈ درج کریں" : language === 'ru' ? "Password darj karein" : "Enter password";
+  const passHint = language === 'ur' ? "کم از کم ۸ حروف، ۱ بڑا حرف، ۱ نمبر اور ۲ خاص حروف" : language === 'ru' ? "Kam az kam 8 huroof, 1 bada harf, 1 number, 2 special" : "Min 8 chars, 1 uppercase, 1 num, 2 special";
+  const confirmPlaceholder = language === 'ur' ? "پاسورڈ دوبارہ لکھیں" : language === 'ru' ? "Password dobara likhein" : "Re-enter password";
 
   const handleSignUp = async () => {
     if (loading) return;
