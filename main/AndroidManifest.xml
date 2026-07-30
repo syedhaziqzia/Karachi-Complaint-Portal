@@ -1,0 +1,67 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+
+    <!-- Required for Notifee scheduled triggers to work when app is killed or device asleep -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme"
+      android:usesCleartextTraffic="false"
+      android:supportsRtl="true">
+
+      <!-- ── Boot Receiver: reschedules Notifee alarms after any phone restart ─────
+           Android wipes all AlarmManager alarms on reboot. This receiver fires on
+           BOOT_COMPLETED (standard) + QUICKBOOT variants (HTC/Huawei) so it works
+           on all manufacturers regardless of what time the phone restarts. -->
+      <receiver
+        android:name=".BootReceiver"
+        android:enabled="true"
+        android:exported="false">
+        <intent-filter android:priority="999">
+          <!-- Standard boot: fires after first user unlock on encrypted devices -->
+          <action android:name="android.intent.action.BOOT_COMPLETED" />
+          <!-- Fires as soon as boot finishes, before user unlock (Android 7+) -->
+          <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+          <!-- HTC / Huawei QUICKBOOT variants -->
+          <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+          <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+          <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+      </receiver>
+
+      <!-- ── Headless JS service: runs the JS reschedule task with no UI ─────────── -->
+      <service
+        android:name=".RescheduleNotificationsService"
+        android:exported="false" />
+
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize"
+        android:theme="@style/SplashTheme"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+    </application>
+</manifest>
