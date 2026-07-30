@@ -58,8 +58,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/KarachiComplaintPortal.git
-cd KarachiComplaintPortal
+git clone https://github.com/syedhaziqzia/Karachi-Complaint-Portal.git
+cd Karachi-Complaint-Portal
 
 # Install dependencies
 npm install
