@@ -31,10 +31,14 @@ android/local.properties
 android/keystore.properties
 android/*.keystore
 android/*.jks
+android/app/*.keystore
+android/app/*.jks
+*.keystore
+*.jks
 
 # 🔐 SENSITIVE: Firebase config (contains live API key)
-# Keep this if your repo is PRIVATE. Add it here if your repo is PUBLIC.
-# android/app/google-services.json
+# Excluded — repo is PUBLIC. Never commit this file.
+android/app/google-services.json
 
 # ── iOS ───────────────────────────────────────────────────────────────────────
 ios/Pods/
