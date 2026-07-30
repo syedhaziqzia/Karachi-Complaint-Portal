@@ -90,6 +90,66 @@ npm run android
 
 ---
 
+## ⚙️ System Constraints & Rules
+
+### 📋 Reporting Rules
+- **Photo mandatory** — every complaint submission requires an attached photo as evidence
+- **GPS location mandatory** — the user's live coordinates must be acquired before submitting
+- **Daily limit: 10 reports per user** — enforced in real-time via a Firestore `rate_limits` collection; the 11th attempt is blocked with a "Daily Limit Reached" modal
+- **Text limits** — descriptions capped at 1,000 characters; location names at 200 characters; bug reports at 2,000 characters
+- **Name validation** — display name must be 2–50 characters on registration
+
+### 🗺️ Duplicate Prevention
+- **Proximity duplicate check** — if another report of the same category exists within ~30 minutes of the submitted coordinates, the new submission is blocked
+- **Self-duplicate block** — if the *same user* already has an active (non-resolved) report at the same spot, they are shown a "You already reported this" modal and blocked
+- **Redirect to verify** — when a nearby duplicate exists from a *different* user, the app redirects the reporter to verify that existing report instead of creating a new one
+
+### ✅ Verification System
+- **Anyone can verify** a complaint *except* the original reporter
+- **One verification per user per report** — enforced by checking `verifiedBy[]` array for both `userId` and `deviceId`
+- **Rewards per verification** — 25 XP + 25 City Credits per verified report
+- **Milestone bonuses for reporters** — when a report reaches 10/20/30 verifications, the original reporter earns bonus City Credits (150 / 75 / 25)
+
+### 🛡️ Anti-Cheat Measures
+- **Device ID binding** — a unique device ID is generated per installation and stored in AsyncStorage; complaints carry this ID
+- **Same-device block** — a user cannot verify a complaint that was submitted from the same physical device, even if logged into a different account
+- **User ID block** — a user cannot verify their own reports regardless of device
+- **Duplicate device in `verifiedBy`** — before granting verification XP, the app checks both `userId` and `deviceId` against the full `verifiedBy` array
+- **Rate limit document** — each submission writes to `rate_limits/{userId}` in Firestore so the daily cap persists across app restarts and devices
+- **Owner-only deletion** — `removeComplaint` checks `complaint.userId === user.id` before allowing deletion; mismatches are logged and rejected
+- **Cross-user save guard** — AppContext blocks saving state to Firestore if the loaded user ID does not match the currently signed-in user ID, preventing data contamination on account switches
+- **Input sanitization** — all user-supplied text fields are stripped through `sanitizeText()` before being written to Firestore
+
+### 🏆 XP, Levels & Ranks
+
+| Action | XP Earned |
+|---|---|
+| Submit a complaint | +250 XP |
+| Verify a complaint | +25 XP |
+| Daily streak claim | +25 to +200 XP (Day 1–7) |
+
+| Level Range | Rank Title |
+|---|---|
+| 1–4 | New Citizen |
+| 5–9 | Active Shehri |
+| 10–19 | Community Guardian |
+| 20–34 | Civic Leader |
+| 35–49 | Elite Citizen |
+| 50+ | City Legend |
+
+Each level requires 25% more XP than the previous one (starts at 500 XP).
+
+### 🎖️ Badge System
+60 badges across categories including streak milestones (7, 14, 30, 50, 100 days), complaint counts per category, XP thresholds, verification counts, and time-based achievements. All badges are computed dynamically from live Firestore data — no manual grants.
+
+### 🎁 City Credits & Rewards
+- Credits are earned through reports, verifications, streaks, and verification milestones
+- Credits are spent on partner vouchers across 5 categories: Food, Transport, Utility, Shopping, Entertainment
+- **Community vouchers** are tailored by neighbourhood socio-economic tier (Rich / Middle / Poor areas show different civic contribution goals)
+- **7-day streak system** — claiming the streak once per day advances the counter; missing a day resets it to Day 1
+
+---
+
 ## 📁 Project Structure
 
 ```
