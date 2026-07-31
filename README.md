@@ -5,21 +5,23 @@
 ---
 
 ## 📸 App Preview
+
 <p align="center">
-  <img src="./assets/screenshots/1-welcome.jpeg.jpeg" width="31%" />
-  <img src="./assets/screenshots/2-signup.jpeg.jpeg" width="31%" />
-  <img src="./assets/screenshots/3-login.jpeg.jpeg" width="31%" />
+  <img src="./assets/screenshots/1-welcome.jpeg" width="31%" />
+  <img src="./assets/screenshots/2-signup.jpeg" width="31%" />
+  <img src="./assets/screenshots/3-login.jpeg" width="31%" />
 </p>
 <p align="center">
-  <img src="./assets/screenshots/4-map.jpeg.jpeg" width="31%" />
-  <img src="./assets/screenshots/5-feed.jpeg.jpeg" width="31%" />
-  <img src="./assets/screenshots/6-reward.jpeg.jpeg" width="31%" />
+  <img src="./assets/screenshots/4-map.jpeg" width="31%" />
+  <img src="./assets/screenshots/5-feed.jpeg" width="31%" />
+  <img src="./assets/screenshots/6-reward.jpeg" width="31%" />
 </p>
 <p align="center">
-  <img src="./assets/screenshots/7-leaderboard.jpeg.jpeg" width="31%" />
-  <img src="./assets/screenshots/8-profile.jpeg.jpeg" width="31%" />
-  <img src="./assets/screenshots/9-settings.jpeg.jpeg" width="31%" />
+  <img src="./assets/screenshots/7-leaderboard.jpeg" width="31%" />
+  <img src="./assets/screenshots/8-profile.jpeg" width="31%" />
+  <img src="./assets/screenshots/9-settings.jpeg" width="31%" />
 </p>
+
 *(Note: Not all app features and screens are shown above due to space limitations. Please run the app to explore the full experience!)*
 
 ---
