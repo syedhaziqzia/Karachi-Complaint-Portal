@@ -24,7 +24,18 @@ const AVATAR_SIZE = 68; // equal for all podium spots
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 15-person global pool (top-6 surface per zone+filter combo)
-const GLOBAL_LEADER_POOL = [
+// To ensure the app pulls real data from Firebase, dummy data has been temporarily disabled.
+// The app will run normally and just show the current user in the leaderboard.
+//
+// TODO (Firebase Connection): To hook this up to real data smoothly:
+// 1. Move this to a state inside the component: const [globalPool, setGlobalPool] = useState([]);
+// 2. Fetch via useEffect:
+//    useEffect(() => {
+//      firestore().collection('leaderboard_global').get().then(snap => {
+//        setGlobalPool(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+//      });
+//    }, []);
+const GLOBAL_LEADER_POOL = []; /* [
   {
     id: 'g1', name: 'Nadia Rauf', area: 'FB Area', baseIssues: 31,
     basePoints: { thisWeek: 3150, thisMonth: 3750, allTime: 38200 },
@@ -115,11 +126,21 @@ const GLOBAL_LEADER_POOL = [
   { id: 'g28', name: 'Hamza Ali', area: 'DHA', baseIssues: 15, basePoints: { thisWeek: 650, thisMonth: 1900, allTime: 11500 }, catAffinity: { all: 1.0, verifier: 0.5, sewerage: 0.9, pothole: 1.6, waste: 0.8, kunda: 1.5, encroachment: 1.2 } },
   { id: 'g29', name: 'Bushra Ansari', area: 'Korangi', baseIssues: 43, basePoints: { thisWeek: 550, thisMonth: 1600, allTime: 9500 }, catAffinity: { all: 1.0, verifier: 1.3, sewerage: 1.4, pothole: 0.6, waste: 1.9, kunda: 0.8, encroachment: 0.7 } },
   { id: 'g30', name: 'Fawad Khan', area: 'Saddar', baseIssues: 11, basePoints: { thisWeek: 450, thisMonth: 1300, allTime: 8000 }, catAffinity: { all: 1.0, verifier: 0.8, sewerage: 0.7, pothole: 1.1, waste: 0.6, kunda: 1.8, encroachment: 2.4 } },
-];
+]; */
 
 // 18-person local pool — zone+filter hashing surfaces 10 of these per combo,
 // so switching zones or categories brings entirely different faces to the front.
-const LOCAL_LEADER_POOL = [
+// To ensure the app pulls real data from Firebase, dummy data has been temporarily disabled.
+//
+// TODO (Firebase Connection): To hook this up to real data smoothly:
+// 1. Move this to a state inside the component: const [localPool, setLocalPool] = useState([]);
+// 2. Fetch via useEffect:
+//    useEffect(() => {
+//      firestore().collection('leaderboard_local').get().then(snap => {
+//        setLocalPool(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+//      });
+//    }, []);
+const LOCAL_LEADER_POOL = []; /* [
   { id: 'l_a',  name: 'Kamran Shah',  basePoints: { thisWeek: 4200,  thisMonth: 18000, allTime: 95000  }, baseIssues: 28, catAffinity: { all: 1.0, verifier: 0.7, sewerage: 1.8, pothole: 0.6, waste: 0.9, kunda: 2.0, encroachment: 0.5 } },
   { id: 'l_b',  name: 'Hina Pervez',  basePoints: { thisWeek: 5850,  thisMonth: 22000, allTime: 120000 }, baseIssues: 41, catAffinity: { all: 1.0, verifier: 1.9, sewerage: 0.6, pothole: 1.4, waste: 0.7, kunda: 0.5, encroachment: 1.8 } },
   { id: 'l_c',  name: 'Tariq Ghauri', basePoints: { thisWeek: 3100,  thisMonth: 13500, allTime: 72000  }, baseIssues: 19, catAffinity: { all: 1.0, verifier: 0.5, sewerage: 2.1, pothole: 0.8, waste: 1.5, kunda: 0.7, encroachment: 0.9 } },
@@ -150,7 +171,7 @@ const LOCAL_LEADER_POOL = [
   { id: 'l_bb', name: 'Yasir Hussain', basePoints: { thisWeek: 850,  thisMonth: 3900,  allTime: 16000 }, baseIssues: 4,  catAffinity: { all: 1.0, verifier: 0.6, sewerage: 1.0, pothole: 0.5, waste: 2.5, kunda: 1.2, encroachment: 0.7 } },
   { id: 'l_cc', name: 'Sajal Aly',     basePoints: { thisWeek: 600,  thisMonth: 2800,  allTime: 12000 }, baseIssues: 3,  catAffinity: { all: 1.0, verifier: 1.3, sewerage: 0.8, pothole: 1.9, waste: 0.7, kunda: 0.5, encroachment: 1.6 } },
   { id: 'l_dd', name: 'Ahad Raza',     basePoints: { thisWeek: 350,  thisMonth: 1800,  allTime: 8000  }, baseIssues: 1,  catAffinity: { all: 1.0, verifier: 0.8, sewerage: 1.5, pothole: 0.7, waste: 1.1, kunda: 2.1, encroachment: 0.5 } },
-];
+]; */
 
 // Medal tints for top 3
 const MEDAL = {

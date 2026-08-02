@@ -473,7 +473,18 @@ const InaamScreen = () => {
   const localizedArea = t(localArea, { defaultValue: localArea });
   
   const getRivalProgress = (area) => {
-    const areas = ['DHA', 'Clifton', 'Gulshan-e-Iqbal', 'Gulistan-e-Jauhar', 'Lyari', 'Korangi', 'Malir', 'Saddar', 'North Nazimabad'];
+    // To ensure the app pulls real data from Firebase, dummy data has been temporarily disabled.
+    // The pseudo rival logic gracefully falls back to a default rival.
+    //
+    // TODO (Firebase Connection): To hook this up to real data smoothly:
+    // 1. Define this as state at the top of InaamScreen: const [areas, setAreas] = useState([]);
+    // 2. Fetch via useEffect:
+    //    useEffect(() => {
+    //      firestore().collection('config').doc('neighborhoods').get().then(doc => {
+    //        if (doc.exists) setAreas(doc.data().areas || []);
+    //      });
+    //    }, []);
+    const areas = []; /* ['DHA', 'Clifton', 'Gulshan-e-Iqbal', 'Gulistan-e-Jauhar', 'Lyari', 'Korangi', 'Malir', 'Saddar', 'North Nazimabad']; */
     
     // Seed it dynamically based on area length and current day so it changes daily but is stable during a session
     const today = new Date();

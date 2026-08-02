@@ -98,7 +98,7 @@ This project uses Firebase. You need to connect your own Firebase project:
 5. Enable **Firestore Database**
 6. Enable **Cloud Storage**
 
-> ⚠️ `google-services.json` is excluded from this repo for security. You must supply your own.
+> ⚠️ **CRITICAL REQUIREMENT:** `google-services.json` is excluded from this repo for security. You must supply your own. **The app will crash natively on boot if you do not connect your own Firebase project.** Firebase is strictly necessary for this app to launch, authenticate users, and load the main feed.
 
 ### Running the App
 
@@ -109,6 +109,17 @@ npm start
 # Run on Android (in a separate terminal)
 npm run android
 ```
+
+### 🛑 Important Note on Demo Data & Firebase Connections
+
+Certain hardcoded demo data arrays have been temporarily disabled in the source code. This was done to ensure the app pulls real data from your Firebase instance rather than relying on dummy information.
+
+**Files & Lines Modified:**
+- **Leaderboard Screen** (`src/screens/main/TopShehriScreen.js`): Lines 27-118 (`GLOBAL_LEADER_POOL`) and Lines 124-153 (`LOCAL_LEADER_POOL`)
+- **Rewards Screen** (`src/screens/main/InaamScreen.js`): Lines 476-478 (`areas` array)
+
+- **Will the app still run?** Yes! Assuming you have properly connected Firebase as required above, the UI logic is designed to fall back gracefully. The leaderboard will simply display the active user without the dummy celebrities, and the rewards screen will use default fallbacks for community goals.
+- **How to connect real data smoothly?** I have left step-by-step `TODO (Firebase Connection)` comments directly above the disabled code in those files. These comments provide the exact `useState` and `useEffect` code snippets needed to fetch this data from your own Firestore collections and populate the UI smoothly.
 
 ---
 
